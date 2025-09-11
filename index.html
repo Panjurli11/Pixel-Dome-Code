@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Deep As Pacific Ocean</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-image"></div>
+    <div class="bg-blur">
+        <div class="main-text">Couldn't Just Send You Words</div>
+        <div class="ball-container">
+            <div class="ball-switch" id="ballSwitch">
+                <div class="ball" id="ball"></div>
+            </div>
+            <div class="hint-text">Your touch unveils a Magical Surprise!</div>
+        </div>
+    </div>
+
+    <div class="loader" id="loader">
+        <div class="sakura-loader">
+            <div class="sakura">🌸</div>
+            <div class="sakura">🌸</div>
+            <div class="sakura">🌸</div>
+            <div class="sakura">🌸</div>
+            <div class="sakura">🌸</div>
+            <div class="sakura">🌸</div>
+            <div class="sakura">🌸</div>
+            <div class="sakura">🌸</div>
+            <div class="sakura">🌸</div>
+        </div>
+        <div class="loader-text">Crafting Your Moment</div>
+    </div>
+
+    <div class="notebook" id="notebook">
+        <button class="close-notebook" id="closeNotebook">✕</button>
+        <div class="notebook-pages">
+            <div class="page page-1">
+                <!-- Empty page as requested -->
+            </div>
+            <div class="page page-2">
+                <h2>Happy Birthday!</h2>
+               <p>Wishing You a day as <strong>Wonderful</strong>  as <strong>You</strong> filled With, <strong>Joy</strong> and <strong>Happiness</strong>.</p>
+                <p>May this Year <strong>Bring You Endless</strong>  Reasons to <strong>Smile</strong> and Countless Moments to Cherish.</p>
+                <p class="page-footer">Sorry for making it a Little Dramatic.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Ball animation
+        const ballSwitch = document.getElementById('ballSwitch');
+        const ball = document.getElementById('ball');
+        const loader = document.getElementById('loader');
+        const notebook = document.getElementById('notebook');
+        const closeNotebook = document.getElementById('closeNotebook');
+        let isBallUp = true;
+        let sakuraContainer;
+        let bubbleContainer;
+
+        ballSwitch.addEventListener('click', function() {
+            isBallUp = !isBallUp;
+            animateBall();
+            triggerAnimationSequence();
+        });
+
+        function animateBall() {
+            if (isBallUp) {
+                ball.style.transform = 'translateY(0)';
+                ball.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            } else {
+                ball.style.transform = 'translateY(120px)';
+                ball.style.transition = 'transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+            }
+        }
+
+        function triggerAnimationSequence() {
+            // Create sakura flowers
+            createSakura();
+            
+            // Create bubbles
+            createBubbles();
+            
+            // Show loader
+            loader.classList.add('active');
+            
+            // After 1.5 seconds, show notebook
+            setTimeout(() => {
+                loader.classList.remove('active');
+                notebook.classList.add('active');
+            }, 1500);
+        }
+
+        function createSakura() {
+            // Remove existing sakura if any
+            if (sakuraContainer) {
+                sakuraContainer.remove();
+            }
+            
+            sakuraContainer = document.createElement('div');
+            sakuraContainer.style.position = 'fixed';
+            sakuraContainer.style.top = '0';
+            sakuraContainer.style.left = '0';
+            sakuraContainer.style.width = '100%';
+            sakuraContainer.style.height = '100%';
+            sakuraContainer.style.pointerEvents = 'none';
+            sakuraContainer.style.zIndex = '10';
+            document.body.appendChild(sakuraContainer);
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const sakura = document.createElement('div');
+                    sakura.innerHTML = '🌸';
+                    sakura.classList.add('sakura');
+                    
+                    const size = Math.random() * 25 + 20;
+                    const x = Math.random() * window.innerWidth;
+                    const delay = Math.random() * 2;
+                    const duration = Math.random() * 3 + 3;
+                    
+                    sakura.style.left = `${x}px`;
+                    sakura.style.bottom = '-50px';
+                    sakura.style.fontSize = `${size}px`;
+                    sakura.style.opacity = '0.8';
+                    sakura.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                    
+                    sakuraContainer.appendChild(sakura);
+                }, i * 200);
+            }
+        }
+
+        function createBubbles() {
+            // Remove existing bubbles if any
+            if (bubbleContainer) {
+                bubbleContainer.remove();
+            }
+            
+            bubbleContainer = document.createElement('div');
+            bubbleContainer.style.position = 'fixed';
+            bubbleContainer.style.top = '0';
+            bubbleContainer.style.left = '0';
+            bubbleContainer.style.width = '100%';
+            bubbleContainer.style.height = '100%';
+            bubbleContainer.style.pointerEvents = 'none';
+            bubbleContainer.style.zIndex = '4';
+            document.body.appendChild(bubbleContainer);
+            
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const bubble = document.createElement('div');
+                    bubble.classList.add('bubble');
+                    
+                    const size = Math.random() * 40 + 20;
+                    const x = Math.random() * window.innerWidth;
+                    const duration = Math.random() * 3 + 3;
+                    const delay = Math.random() * 2;
+                    
+                    bubble.style.width = `${size}px`;
+                    bubble.style.height = `${size}px`;
+                    bubble.style.left = `${x}px`;
+                    bubble.style.top = '-50px';
+                    bubble.style.animation = `bubble-float ${duration}s ease-in ${delay}s forwards`;
+                    bubble.style.opacity = '0.9';
+                    
+                    bubbleContainer.appendChild(bubble);
+                }, i * 300);
+            }
+        }
+
+        closeNotebook.addEventListener('click', function() {
+            notebook.classList.remove('active');
+            isBallUp = true;
+            animateBall();
+            
+            // Remove sakura and bubbles
+            if (sakuraContainer) sakuraContainer.remove();
+            if (bubbleContainer) bubbleContainer.remove();
+        });
+    </script>
+</body>
+</html>
