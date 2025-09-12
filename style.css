@@ -21,6 +21,9 @@
         }
 
         body {
+            body {
+  font-size: clamp(14px, 2vw, 20px);
+            }
             font-family: 'Poppins', sans-serif;
             background: #000;
             color: white;
@@ -434,3 +437,4 @@
             }
 
         }
+
