@@ -185,6 +185,7 @@
         }
 
         .page-2 {
+            margin-top: 10px;
             z-index: 1;
             transform: rotateY(180deg);
             background: var(--page-color);
@@ -431,4 +432,5 @@
                 z-index: 1000;
                 font-size: 1.5rem;
             }
+
         }
