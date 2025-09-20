@@ -437,4 +437,39 @@
             }
 
         }
+ /* Samsung Galaxy S8+ specific adjustments */
+@media screen and (max-height: 740px) and (max-width: 360px) {
+    .main-text {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .notebook-pages {
+        height: 70vh;
+        max-width: 340px;
+    }
+    
+    .page {
+        padding: 1.2rem;
+    }
+    
+    .page h2 {
+        font-size: 1.6rem;
+    }
+    
+    .page p {
+        font-size: 1rem;
+    }
+    
+    .ball-switch {
+        width: 60px;
+        height: 160px;
+    }
+    
+    .ball {
+        width: 60px;
+        height: 60px;
+    }
+}
+
 
